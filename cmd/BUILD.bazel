@@ -5,7 +5,11 @@ go_library(
     srcs = ["main.go"],
     importpath = "github.com/alexbathome/bazel-build-protobuf/cmd",
     visibility = ["//visibility:private"],
-    deps = ["@com_github_gravitational_teleport_api//client"],
+    deps = [
+        "//internal/utils",
+        "//proto",
+        "@com_github_gravitational_teleport_api//client",
+    ],
 )
 
 go_binary(
