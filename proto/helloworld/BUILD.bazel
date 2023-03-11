@@ -1,0 +1,28 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@build_stack_rules_proto//rules/go:proto_go_library.bzl", "proto_go_library")
+load("@build_stack_rules_proto//rules:proto_compile.bzl", "proto_compile")
+
+proto_library(
+    name = "helloworld_proto",
+    srcs = ["HelloWorld.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_compile(
+    name = "helloworld_go_compile",
+    output_mappings = ["HelloWorld.pb.go=github.com/alexbathome/bazel-build-protobuf/proto/helloworld/HelloWorld.pb.go"],
+    outputs = ["HelloWorld.pb.go"],
+    plugins = ["@build_stack_rules_proto//plugin/golang/protobuf:protoc-gen-go"],
+    proto = "helloworld_proto",
+)
+
+proto_go_library(
+    name = "helloworld_go_proto",
+    srcs = ["HelloWorld.pb.go"],
+    importpath = "github.com/alexbathome/bazel-build-protobuf/proto/helloworld",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@org_golang_google_protobuf//reflect/protoreflect",
+        "@org_golang_google_protobuf//runtime/protoimpl",
+    ],
+)
