@@ -14,7 +14,8 @@
 
 syntax = "proto3";
 
-package helloworld;
+package proto;
+option go_package = "github.com/alexbathome/bazel-build-protobuf/proto/helloworld;helloworld";
 
 // The greeting service definition.
 service Greeter {

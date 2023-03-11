@@ -7,7 +7,7 @@ import (
 	"github.com/gravitational/teleport/api/client"
 
 	"github.com/alexbathome/bazel-build-protobuf/internal/utils"
-	pb "github.com/alexbathome/bazel-build-protobuf/proto"
+	pb "github.com/alexbathome/bazel-build-protobuf/proto/helloworld"
 )
 
 func main() {
